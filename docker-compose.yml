@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: BlazorDevOpsDemo.Api/Dockerfile
+    ports:
+      - "5001:80"
+    environment:
+     - ASPNETCORE_URLS=http://+:80
+    networks:
+      - blazor-net
+
+  web:
+    build:
+      context: .
+      dockerfile: BlazorDevOpsDemo.Web/Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      - api
+    networks:
+      - blazor-net
+
+networks:
+  blazor-net:
+    driver: bridge

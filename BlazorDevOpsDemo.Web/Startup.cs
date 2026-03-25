@@ -18,10 +18,9 @@ namespace BlazorDevOpsDemo.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // 👇 AQUÍ conectas con la API
             services.AddHttpClient("Api", client =>
             {
-                client.BaseAddress = new Uri("https://localhost:7030/");
+                client.BaseAddress = new Uri("http://api"); 
             });
 
             services.AddRazorPages();
