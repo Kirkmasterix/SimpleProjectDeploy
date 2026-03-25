@@ -1,7 +1,19 @@
 ﻿@page "/"
+@inject IHttpClientFactory ClientFactory
 
-<h1>Hello, world!</h1>
+<h1>Blazor + API Demo</h1>
 
-Welcome to your new app.
+<button @onclick="CallApi">Llamar API</button>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<p>@result</p>
+
+@code {
+    string result = "";
+
+    async Task CallApi()
+    {
+        var client = ClientFactory.CreateClient("Api");
+        var response = await client.GetStringAsync("api/weather");
+        result = response;
+    }
+}
