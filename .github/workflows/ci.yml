@@ -27,3 +27,19 @@ jobs:
 
     - name: Build Docker images
       run: docker compose build
+
+    # 🔐 Login Docker Hub
+    - name: Login Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    # 🏷️ Tag images
+    - name: Tag images
+      run: |
+        docker tag simpleprojectdeploy-web ${{ secrets.DOCKER_USERNAME }}/simpleprojectdeploy-web:latest
+        docker tag simpleprojectdeploy-api ${{ secrets.DOCKER_USERNAME }}/simpleprojectdeploy-api:latest
+
+    # 🚀 Push images
+    - name: Push images
+      run: |
+        docker push ${{ secrets.DOCKER_USERNAME }}/simpleprojectdeploy-web:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/simpleprojectdeploy-api:latest
