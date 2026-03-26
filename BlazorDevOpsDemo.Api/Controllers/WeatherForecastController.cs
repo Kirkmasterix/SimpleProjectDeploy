@@ -11,7 +11,7 @@ public class WeatherController : ControllerBase
     {
         return Ok(new
         {
-            message = "Hello from API",
+            message = "Hello Perritin",
             date = DateTime.Now
         });
     }
