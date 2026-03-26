@@ -20,7 +20,7 @@ namespace BlazorDevOpsDemo.Web
         {
             services.AddHttpClient("Api", client =>
             {
-                client.BaseAddress = new Uri("http://api"); 
+                client.BaseAddress = new Uri("https://simpleprojectdeploy-api.onrender.com");
             });
 
             services.AddRazorPages();
