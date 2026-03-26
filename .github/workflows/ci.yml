@@ -48,5 +48,8 @@ jobs:
     - name: Deploy API to Render
       run: curl -X POST ${{ secrets.RENDER_HOOK_API }}
 
+    - name: Wait for API to be ready
+      run: sleep 30  # espera 30 segundos, ajusta según la velocidad de despliegue
+      
     - name: Deploy Web to Render
       run: curl -X POST ${{ secrets.RENDER_HOOK_WEB }}
