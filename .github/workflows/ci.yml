@@ -43,3 +43,10 @@ jobs:
       run: |
         docker push ${{ secrets.DOCKER_USERNAME }}/simpleprojectdeploy-web:latest
         docker push ${{ secrets.DOCKER_USERNAME }}/simpleprojectdeploy-api:latest
+
+    # 🔁 Trigger Render Deploy (auto-deploy)
+    - name: Deploy API to Render
+      run: curl -X POST ${{ secrets.RENDER_HOOK_API }}
+
+    - name: Deploy Web to Render
+      run: curl -X POST ${{ secrets.RENDER_HOOK_WEB }}
